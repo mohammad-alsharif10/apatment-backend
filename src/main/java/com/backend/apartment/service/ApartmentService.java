@@ -11,8 +11,10 @@ import com.skeleton.response.SingleResult;
 import com.skeleton.service.BaseService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @AllArgsConstructor
@@ -21,6 +23,7 @@ public class ApartmentService extends BaseService<Long, Apartment, ApartmentDto>
 
     private final ApartmentRepository apartmentRepository;
     private final ApartmentMapper apartmentMapper;
+    private final ImageService imageService;
 
     @Override
     public BaseRepository<Apartment, Long> getRepository() {
@@ -45,5 +48,17 @@ public class ApartmentService extends BaseService<Long, Apartment, ApartmentDto>
     @Override
     public ResponseEntity<SingleResult<Long, ApartmentDto>> delete(Long modelId) {
         return super.delete(modelId);
+    }
+
+    public ResponseEntity<SingleResult<Long, ApartmentDto>> postApartment(MultipartFile[] images, ApartmentDto apartmentDto) {
+        Apartment apartment = apartmentRepository.save(apartmentMapper.toBaseEntity(apartmentDto));
+        apartment.setImages(imageService.uploadApartmentImages(images, apartment.getId()));
+        return new ResponseEntity<>(
+                new SingleResult<>(
+                        false,
+                        200,
+                        "Images have been uploaded",
+                        apartmentMapper.toBaseDto(apartmentRepository.save(apartment))),
+                HttpStatus.OK);
     }
 }

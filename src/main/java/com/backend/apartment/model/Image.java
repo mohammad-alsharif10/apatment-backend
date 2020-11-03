@@ -26,4 +26,6 @@ public class Image extends BaseModel<Long> {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "apartment_id", referencedColumnName = "id")
     private Apartment apartment;
+
+
 }

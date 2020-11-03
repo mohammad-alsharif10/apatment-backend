@@ -25,7 +25,7 @@ public class Apartment extends BaseModel<Long> {
 
     private Integer monthlyRent;
 
-    private Integer status;
+    private String status;
 
     private String arabicFullName;
 

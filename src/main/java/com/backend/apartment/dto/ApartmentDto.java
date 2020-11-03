@@ -1,7 +1,6 @@
 package com.backend.apartment.dto;
 
 import com.skeleton.dto.BaseDto;
-import com.skeleton.model.User;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class ApartmentDto extends BaseDto<Long> {
 
     private Integer monthlyRent;
 
-    private Integer status;
+    private String status;
 
     private String arabicFullName;
 

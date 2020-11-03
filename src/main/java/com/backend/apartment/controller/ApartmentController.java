@@ -5,8 +5,10 @@ import com.backend.apartment.service.ApartmentService;
 import com.skeleton.response.PageResult;
 import com.skeleton.response.SingleResult;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/apartment")
@@ -33,6 +35,14 @@ public class ApartmentController {
     @RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<SingleResult<Long, ApartmentDto>> deleteEntity(@PathVariable("id") Long id) {
         return apartmentService.delete(id);
+    }
+
+    @RequestMapping(value = "/post-apartment", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<SingleResult<Long, ApartmentDto>> postApartment(
+            @RequestParam(value = "images") MultipartFile[] images,
+            @RequestParam(name = "apartment") String apartmentDto) {
+        return null;
+//        return apartmentService.postApartment(images, apartmentDto);
     }
 }
 
