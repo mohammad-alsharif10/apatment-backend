@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/apartment")
 @AllArgsConstructor
-@CrossOrigin(origins = ("http://localhost:4200"))
+@CrossOrigin(origins = ("*"))
 public class ApartmentController {
 
     private final ApartmentService apartmentService;

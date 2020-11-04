@@ -1,10 +1,12 @@
 package com.backend.apartment.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 
 public class CROSWebConfig extends GenericFilterBean implements Filter {
 
